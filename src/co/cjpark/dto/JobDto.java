@@ -1,6 +1,6 @@
 package co.cjpark.dto;				// DTO 기본 구성 
 
-public class JobDto {		//DTO는 기본적으로 table 과 1:1
+public class JobDto {		//DTO는 기본적으로 table 과 1:1    //jobs table에 대한 DTO - table 칼럼명, 타입 맞춰줘야 함
 	private String job_id;
 	private String job_title;
 	private int min_salary;

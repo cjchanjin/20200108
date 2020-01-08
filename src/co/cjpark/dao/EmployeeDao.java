@@ -10,8 +10,8 @@ import co.cjpark.dto.JobDto;
 
 public class EmployeeDao {
 	private Connection conn;
-	private PreparedStatement psmt;
-	private ResultSet rs;					//select 구문에 결과값을 받기 위해 쓴다.
+//	private PreparedStatement psmt;
+//	private ResultSet rs;					//select 구문에 결과값을 받기 위해 쓴다.
 	
 	private String driver = "oracle.jdbc.driver.OracleDriver";
 	private String url = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -27,31 +27,31 @@ public class EmployeeDao {
 		}
 	}
 	
-	public void select () {
-		JobDto dto = new JobDto();
-		String sql = "select * from jobs";
-		try {
-			psmt = conn.prepareStatement(sql);				//통로 통해서 구문 전달
-			rs = psmt.executeQuery();								//결과값 들고있다 = rs
-			while(rs.next()) {
-				dto.setJob_id(rs.getString("job_id"));
-				dto.setJob_title(rs.getString("job_title"));
-				dto.setMin_salary(rs.getInt("min_salary"));
-				dto.setMax_salary(rs.getInt("max_salary"));
-				dto.toString();
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}	finally {
-			try {
-				if(rs != null) rs.close();
-				if(psmt != null) psmt.close();
-				if(conn != null) conn.close();
-			}	catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
+//	public void select () {
+//		JobDto dto = new JobDto();
+//		String sql = "select * from jobs";
+//		try {
+//			psmt = conn.prepareStatement(sql);				//통로 통해서 구문 전달
+//			rs = psmt.executeQuery();								//결과값 들고있다 = ResultSet
+//			while(rs.next()) {
+//				dto.setJob_id(rs.getString("job_id"));					//칼럼명 대신 숫자(DB의 칼럼인덱스)써도 된다
+//				dto.setJob_title(rs.getString("job_title"));				// rs.getString(1);   but 헷갈리기 쉬움.
+//				dto.setMin_salary(rs.getInt("min_salary"));
+//				dto.setMax_salary(rs.getInt("max_salary"));
+//				dto.toString();
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}	finally {										//connection full 할때는 연결 끊는 구문 필요 없다. (미리 여러 연결 땡겨 놓는것)
+//			try {
+//				if(rs != null) rs.close();
+//				if(psmt != null) psmt.close();
+//				if(conn != null) conn.close();
+//			}	catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
+//	}
 	
 	
 }
